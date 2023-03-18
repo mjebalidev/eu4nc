@@ -3,10 +3,14 @@
   import viteLogo from '/vite.svg'
   import Counter from './lib/Counter.svelte'
   import CreateCountry from './lib/CreateCountry.svelte';
+  import CreateEvents from './lib/CreateEvents.svelte';
+  import FlagMaker from './lib/FlagMaker.svelte';
+  import CreateMissions from './lib/CreateMissions.svelte';
 </script>
 
 <main>
-  <CreateCountry />
+  <CreateMissions />
+
 </main>
 
 <style>
