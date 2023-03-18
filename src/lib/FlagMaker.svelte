@@ -1,16 +1,28 @@
 <script>
+    import {Hr, Button} from 'flowbite-svelte'
 </script>
   
 <main>
-    <div>
+    <Button href="https://flagmakerjr.stg7.net/" target="_blank">Go to flagmakerjr.stg7.net</Button>
+    <Hr />
+    <div class="container">
         <iframe id="flagmaker"
         title="flagmaker"
         width="500"
         height="500"
+        class="responsive-iframe"
         src="https://flagmakerjr.stg7.net/"></iframe>
     </div>
 </main>
   
 <style>
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
 </style>

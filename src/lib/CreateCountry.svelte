@@ -156,7 +156,6 @@ loadFile()
   
 <main>
     <div>
-        <h1>Create a country</h1>
         <Label>Tag</Label>
         <Input bind:value={tag} />
         <Label>Country Name</Label>

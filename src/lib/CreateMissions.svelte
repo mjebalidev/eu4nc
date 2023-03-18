@@ -1,6 +1,6 @@
 <script>
 
-    import { Button, Input, Label, Range, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
+    import { Hr, Button, Input, Label, Range, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from 'flowbite-svelte';
     let value = ""
     let minmaxValue=2
     let json_container = []
@@ -170,11 +170,12 @@
 
 </script>
   
-<main>    
+<main>
+    <Label>Min-max range</Label>
+    <Range id="range-minmax" min="0" max="10" on:change={renderTableList} bind:value={minmaxValue}/>
+    <p>Value: {minmaxValue}</p>
+    <Hr/>
     <div class="main-frame">
-        <Label>Min-max range</Label>
-        <Range id="range-minmax" min="0" max="10" on:change={renderTableList} bind:value={minmaxValue}/>
-        <p>Value: {minmaxValue}</p>
         <Table class="table">
             <TableHead>
                 <TableHeadCell>Name of the mission</TableHeadCell>

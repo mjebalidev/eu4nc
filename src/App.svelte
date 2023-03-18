@@ -2,21 +2,23 @@
   import CreateCountry from './lib/CreateCountry.svelte';
   import CreateMissions from './lib/CreateMissions.svelte';
   import FlagMaker from './lib/FlagMaker.svelte';
-  import {Hr} from "flowbite-svelte";
+  import {Heading, Span, Tabs, TabItem} from "flowbite-svelte";
 </script>
 
 <main>
-  <div class="main-frame">
-  <FlagMaker />
-  <br/>
-  <Hr/>
-  <br/>
-  <CreateCountry />
-  <br/>
-  <Hr />
-  <br/>
-  <CreateMissions />
-  
+  <Heading tag="h1" class="mb-4" customSize="text-3xl font-extrabold  md:text-5xl lg:text-6xl"><Span gradient>EU4</Span> <Span gradient>N</Span>ation <Span gradient>C</Span>reator.</Heading>
+  <div >
+   <Tabs>
+    <TabItem title="Create Country">
+      <CreateCountry />
+    </TabItem>
+    <TabItem title="Create Missions">
+      <CreateMissions />
+    </TabItem>
+    <TabItem title="Flag Maker">
+      <FlagMaker />
+    </TabItem> 
+  </Tabs>
   </div>
 </main>
 
