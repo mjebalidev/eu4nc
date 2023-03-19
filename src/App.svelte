@@ -2,11 +2,13 @@
   import CreateCountry from './lib/CreateCountry.svelte';
   import CreateMissions from './lib/CreateMissions.svelte';
   import FlagMaker from './lib/FlagMaker.svelte';
-  import {Heading, Span, Tabs, TabItem} from "flowbite-svelte";
+  import logo from './assets/logo500x500.png';
+  import {Img, Secondary, Heading, Tabs, TabItem} from "flowbite-svelte";
 </script>
 
 <main>
-  <Heading tag="h1" class="mb-4" customSize="text-3xl font-extrabold  md:text-5xl lg:text-6xl"><Span gradient>EU4</Span> <Span gradient>N</Span>ation <Span gradient>C</Span>reator.</Heading>
+  <Img src="{logo}" class="logo" alignment="mx-auto" size="max-w-xs"/>
+  <Heading tag="h1" class="mb-4" customSize="text-3xl font-extrabold  md:text-5xl lg:text-6xl">EU4 <Secondary class="ml-2">Nation Creator</Secondary></Heading>
   <div >
    <Tabs>
     <TabItem title="Create Country">
@@ -24,7 +26,7 @@
 
 <style>
   .logo {
-    height: 6em;
+    height: 1em;
     padding: 1.5em;
     will-change: filter;
     transition: filter 300ms;

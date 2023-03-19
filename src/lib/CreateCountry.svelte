@@ -1,5 +1,5 @@
 <script>
-import { Label, Input, Button,Search, Checkbox} from 'flowbite-svelte'
+import { Label, Input, Button, Dropdown, DropdownItem, Chevron ,Search, Checkbox} from 'flowbite-svelte'
 import provinces_filelist from '../lib/provinces_list.txt'
 
 let display_result = false
@@ -10,37 +10,84 @@ let country_name = "Zaaland" // global
 // global
 let gouvernements = ["stateless_society","pirate_government","pirate_kingdom","holy_roman_electors_monarchy","holy_roman_electors_republic","japanese_shogunate","french_kingdom","default_monarchy","default_republic","default_theocracy","default_tribal","gov_steppe_horde","gov_native_council","noble_republic","gov_republican_dictatorship","gov_papal_government","gov_tribal","germanic_monastic_order","brewing_order","jewish_theocracy","zoroastrian_theocracy","orthodox_theocracy"]
 let religions = ["ibadi","shiite","sunni","coptic","reformed","protestant","hussite","anglican","catholic","orthodox","paganism","jewish","zoroastrianism","buddhism","hinduism","islam","jainism","sikhism","shinto","taoism","confucianism","totemism","shamanism","animism"]
+let cultures = ["pommeranian","prussian","baltic_german","lower_saxon","hannoverian","hessian","saxon","franconian","swabian","swiss","bavarian","austrian","dutch","flemish","frisian","swedish","danish","norwegian","finnish","sapmi","karelian","icelandic","norse","english","american","welsh","cornish","scottish","irish","highland_scottish","lombard","tuscan","sardinian","romagnan","ligurian","venetian","dalmatian","neapolitan","piedmontese","umbrian","sicilian","maltese","castillian","mexican","platinean","leonese","aragonese","catalan","galician","andalucian","portugese","brazilian","basque","cosmopolitan_french","gascon","normand","aquitaine","burgundian","breton"]
 let graphical_cultures = []
 
 // history - countries - ZAA
-let gouvernement = ""
-let add_government_reform = ""
-let primary_culture = ""
-let religion = ""
-let elector = ""
-let capital = ""
-let technology_group = ""
-let add_accepted_culture = ""
+let gouvernement = "monarchy"
+let add_government_reform = "feudalism_reform"
+let primary_culture = "prussian"
+let religion = "catholic"
+let elector = "no"
+let capital = "50 # Berlin"
+let technology_group = "western"
+let add_accepted_culture = "sorbian"
 let change_estate_land_share = "{ estate = estate_burghers share = -5 }"
-let monarch_name = ""
-let monarch_dynastie = ""
-let monarch_adm = ""
-let monarch_dip = ""
-let monarch_mil = ""
+let monarch_name = "Tester"
+let monarch_dynastie = "of Testenburg"
+let monarch_adm = "6"
+let monarch_dip = "6"
+let monarch_mil = "6"
 let monarch_birth_date = "1423.1.1"
-let monarch_religion = ""
+let monarch_religion = "catholic"
 let monarch = `{ name = "${monarch_name}" dynasty = "${monarch_dynastie}" birth_date = ${monarch_birth_date} adm = ${monarch_adm} dip = ${monarch_dip} mil = ${monarch_mil} religion = ${monarch_religion} }`
 
 // common - countries - ZAA
-let graphical_culture = ""
-let color = "{ 0 0 0 }"
-let revolutionnary_colors = "{ 0 0 0 }"
-let prefered_religion = ""
-let historical_idea_groups = ""
-let historical_units = ""
-let monarch_names = ""
-let leader_names = ""
-let ship_names = ""
+let graphical_culture = "westerngfx"
+let color = "{ 161  139  40 }"
+let revolutionnary_colors = "{ 0  4  15 }"
+let prefered_religion = "protestant"
+let historical_idea_groups = `{
+	economic_ideas
+	defensive_ideas
+	diplomatic_ideas
+	offensive_ideas
+	innovativeness_ideas
+	quantity_ideas
+	administrative_ideas
+	religious_ideas
+}`
+let historical_units = `{
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}`
+let monarch_names = `{
+    "Vratislav #3" = 5
+	"Boleslav #4" = 10
+	"Vil�m #0" = 5
+	"Viktor #0" = 0
+	"Jarom�r #0" = 5
+	"Jaroslav #0" = 1
+	"Anezka #0" = -1
+	"Eliska #0" = -1
+	"Katerina #0" = -1
+	"Marie #0" = -1
+	"Ludmila #0" = -1
+	"Alzbeta #0" = -1
+}`
+let leader_names = `{
+    "z Otradovic"
+	"z Falkensteina"
+}`
+let ship_names = `{
+    Orel
+	Sokol
+	Slezsko
+	Sipka
+	Hvezda
+}`
 
 
 // provinces
@@ -160,14 +207,22 @@ loadFile()
         <Input bind:value={tag} />
         <Label>Country Name</Label>
         <Input bind:value={country_name} />
-        <Label>Government</Label>
-        <Input bind:value={gouvernement} />
+        <Button><Chevron>Government: {gouvernement}</Chevron></Button>
+        <Dropdown >
+        {#each gouvernements as selected_gouvernement}
+            <DropdownItem on:click={()=> gouvernement=selected_gouvernement} >{selected_gouvernement}</DropdownItem>
+        {/each}
+        </Dropdown>
         <Label>Government reform</Label>
         <Input bind:value={add_government_reform} />
         <Label>Primary culture</Label>
         <Input bind:value={primary_culture} />
-        <Label>Religion</Label>
-        <Input bind:value={religion} />
+        <Button><Chevron>Religion: {religion}</Chevron></Button>
+        <Dropdown >
+        {#each religions as selected_religion}
+            <DropdownItem on:click={()=> religion=selected_religion} >{selected_religion}</DropdownItem>
+        {/each}
+        </Dropdown>
         <Label>Elector</Label>
         <Input bind:value={elector} />
         <Label>Capital</Label>
