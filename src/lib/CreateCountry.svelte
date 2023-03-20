@@ -1,6 +1,7 @@
 <script>
 import { Label, Input, Button, Dropdown, DropdownItem, Chevron ,Search, Checkbox} from 'flowbite-svelte'
 import provinces_filelist from '../lib/provinces_list.txt'
+import ColorPicker from 'svelte-awesome-color-picker';
 
 let display_result = false
 
@@ -22,7 +23,7 @@ let elector = "no"
 let capital = "50 # Berlin"
 let technology_group = "western"
 let add_accepted_culture = "sorbian"
-let change_estate_land_share = "{ estate = estate_burghers share = -5 }"
+let change_estate_land_share = " estate = estate_burghers share = -5 "
 let monarch_name = "Tester"
 let monarch_dynastie = "of Testenburg"
 let monarch_adm = "6"
@@ -34,10 +35,13 @@ let monarch = `{ name = "${monarch_name}" dynasty = "${monarch_dynastie}" birth_
 
 // common - countries - ZAA
 let graphical_culture = "westerngfx"
+let rgb; // or hsv or hex
+let picked_color = "Country color"
 let color = "{ 161  139  40 }"
 let revolutionnary_colors = "{ 0  4  15 }"
+let color_elements = ["Country color", "Revolutionnary Country color"]
 let prefered_religion = "protestant"
-let historical_idea_groups = `{
+let historical_idea_groups = `
 	economic_ideas
 	defensive_ideas
 	diplomatic_ideas
@@ -46,8 +50,8 @@ let historical_idea_groups = `{
 	quantity_ideas
 	administrative_ideas
 	religious_ideas
-}`
-let historical_units = `{
+`
+let historical_units = `
 	western_medieval_infantry
 	western_medieval_knights
 	western_men_at_arms
@@ -62,8 +66,8 @@ let historical_units = `{
 	open_order_cavalry
 	napoleonic_square
 	napoleonic_lancers
-}`
-let monarch_names = `{
+`
+let monarch_names = `
     "Vratislav #3" = 5
 	"Boleslav #4" = 10
 	"Vil�m #0" = 5
@@ -76,18 +80,18 @@ let monarch_names = `{
 	"Marie #0" = -1
 	"Ludmila #0" = -1
 	"Alzbeta #0" = -1
-}`
-let leader_names = `{
+`
+let leader_names = `
     "z Otradovic"
 	"z Falkensteina"
-}`
-let ship_names = `{
+`
+let ship_names = `
     Orel
 	Sokol
 	Slezsko
 	Sipka
 	Hvezda
-}`
+`
 
 
 // provinces
@@ -143,9 +147,9 @@ function createCountry(){
     capital = ${capital}
     technology_group = ${technology_group}
     add_accepted_culture = ${add_accepted_culture}
-    change_estate_land_share = ${change_estate_land_share}
+    change_estate_land_share = {${change_estate_land_share}}
     1444.1.1 = { 
-        monarch = ${monarch}
+        monarch = {${monarch}}
     }
     `
 
@@ -155,11 +159,11 @@ function createCountry(){
     color = ${color}
     revolutionnary_colors = ${revolutionnary_colors}
     prefered_religion = ${prefered_religion}
-    historical_idea_groups = ${historical_idea_groups}
-    historical_units = ${historical_units}
-    monarch_names = ${monarch_names}
-    leader_names = ${leader_names}
-    ship_names = ${ship_names}
+    historical_idea_groups = {${historical_idea_groups}}
+    historical_units = {${historical_units}}
+    monarch_names = {${monarch_names}}
+    leader_names = {${leader_names}}
+    ship_names = {${ship_names}}
     `
     // provinces
     // provinces_toadd
@@ -213,8 +217,10 @@ loadFile()
             <DropdownItem on:click={()=> gouvernement=selected_gouvernement} >{selected_gouvernement}</DropdownItem>
         {/each}
         </Dropdown>
+        <!-- 
         <Label>Government reform</Label>
         <Input bind:value={add_government_reform} />
+        -->        
         <Label>Primary culture</Label>
         <Input bind:value={primary_culture} />
         <Button><Chevron>Religion: {religion}</Chevron></Button>
@@ -223,16 +229,20 @@ loadFile()
             <DropdownItem on:click={()=> religion=selected_religion} >{selected_religion}</DropdownItem>
         {/each}
         </Dropdown>
+        <!-- 
         <Label>Elector</Label>
         <Input bind:value={elector} />
+         -->
         <Label>Capital</Label>
         <Input bind:value={capital} />
         <Label>Technology group</Label>
         <Input bind:value={technology_group} />
         <Label>Accepted culture</Label>
         <Input bind:value={add_accepted_culture} />
+        <!-- 
         <Label>Change estate land share</Label>
         <Input bind:value={change_estate_land_share} />
+         -->
         <Label>Monarch name</Label>
         <Input bind:value={monarch_name} />
         <Label>Monarch dynastie</Label>
@@ -243,22 +253,42 @@ loadFile()
         <Input bind:value={monarch_dip} />
         <Label>Monarch mil</Label>
         <Input bind:value={monarch_mil} />
+        <!-- 
         <Label>Monarch birth date</Label>
         <Input bind:value={monarch_birth_date} />
+         -->
         <Label>Monarch religion</Label>
         <Input bind:value={monarch_religion} />
         <Label>Graphical culture</Label>
         <Input bind:value={graphical_culture} />
-        <Label>Color</Label>
-        <Input bind:value={color} />
-        <Label>Revolutionnary colors</Label>
-        <Input bind:value={revolutionnary_colors} />
+        <Label>Color:</Label> <p>{color}</p>
+        <Label>Revolutionnary Color:</Label> <p>{revolutionnary_colors}</p>
+        <Button><Chevron>Selected color: {picked_color}</Chevron></Button>
+        <Dropdown >
+        {#each color_elements as color}
+            <DropdownItem on:click={()=> picked_color = color } >{color}</DropdownItem>
+        {/each}
+        </Dropdown>
+        <ColorPicker on:input = {() => {
+
+            if (picked_color == "Country color"){
+            color = "{ " + rgb.r + " " + rgb.g + " " + rgb.b + " }"
+            }
+            else if (picked_color == "Revolutionnary Country color"){
+            revolutionnary_colors = "{ " + rgb.r + " " + rgb.g + " " + rgb.b + " }"
+            }
+
+            console.log(rgb)
+            console.log(picked_color)
+            }} bind:rgb />
+        <!-- 
         <Label>Prefered religion</Label>
         <Input bind:value={prefered_religion} />
         <Label>Historical idea groups</Label>
         <Input bind:value={historical_idea_groups} />
         <Label>Historical units</Label>
         <Input bind:value={historical_units} />
+         -->
         <Label>Monarch names</Label>
         <Input bind:value={monarch_names} />
         <Label>Leader names</Label>
