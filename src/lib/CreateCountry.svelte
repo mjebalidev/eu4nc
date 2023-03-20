@@ -135,7 +135,7 @@ function createCountry(){
     // create the file
     // end files
     // /country_tags/00_counteries.txt
-    let countries_00_tag = `${tag} = "countries/${tag}custom.txt"`
+    let countries_00_tag = `${tag} = "countries/${country_name}.txt"`
 
     // history/countries/ZAA - ZAAcustom.txt
     let end_history_countries = `
@@ -165,12 +165,26 @@ function createCountry(){
     leader_names = {${leader_names}}
     ship_names = {${ship_names}}
     `
+
+    //localisation files
+    let countries_l_english_content = `
+    l_english: 
+    ${tag}:0 "${country_name}"
+    ${tag}_ADJ:0 "${country_name}"
+    `
+    let countries_l_french_content = `
+    l_french: 
+    ${tag}:0 "${country_name}"
+    ${tag}_ADJ:0 "${country_name}"
+    `
     // provinces
     // provinces_toadd
 
-    downloadFile("00_countries",countries_00_tag)
+    downloadFile("YOURMODNAME_countries",countries_00_tag)
     downloadFile(tag + " - " + country_name,end_history_countries)
     downloadFile(country_name,end_common_countries)
+    downloadFile("countries_l_english.yml", countries_l_english_content)
+    downloadFile("countries_l_french.yml", countries_l_french_content)
     display_result = true
 }   
 

@@ -23,6 +23,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    height: 100%;
+    width: 100%;
 }
 
 </style>
