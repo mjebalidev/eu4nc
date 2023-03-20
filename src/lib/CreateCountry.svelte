@@ -225,7 +225,7 @@ loadFile()
         <Input bind:value={tag} />
         <Label>Country Name</Label>
         <Input bind:value={country_name} />
-        <Button><Chevron>Government: {gouvernement}</Chevron></Button>
+        <Button color="dark"><Chevron>Government: {gouvernement}</Chevron></Button>
         <Dropdown >
         {#each gouvernements as selected_gouvernement}
             <DropdownItem on:click={()=> gouvernement=selected_gouvernement} >{selected_gouvernement}</DropdownItem>
@@ -235,13 +235,13 @@ loadFile()
         <Label>Government reform</Label>
         <Input bind:value={add_government_reform} />
         -->        
-        <Button><Chevron>Primary culture: {primary_culture}</Chevron></Button>
+        <Button color="dark"><Chevron>Primary culture: {primary_culture}</Chevron></Button>
         <Dropdown >
         {#each cultures as selected_culture}
             <DropdownItem on:click={()=> primary_culture=selected_culture} >{selected_culture}</DropdownItem>
         {/each}
         </Dropdown>
-        <Button><Chevron>Religion: {religion}</Chevron></Button>
+        <Button color="dark"><Chevron>Religion: {religion}</Chevron></Button>
         <Dropdown >
         {#each religions as selected_religion}
             <DropdownItem on:click={()=> religion=selected_religion} >{selected_religion}</DropdownItem>
@@ -268,21 +268,21 @@ loadFile()
         <Label>Monarch dynastie</Label>
         <Input bind:value={monarch_dynastie} />
 
-        <Button><Chevron>Monarch ADM: {monarch_adm}</Chevron></Button>
+        <Button color="dark"><Chevron>Monarch ADM: {monarch_adm}</Chevron></Button>
         <Dropdown >
         {#each game_points as game_point}
             <DropdownItem on:click={()=> monarch_adm=game_point} >{game_point}</DropdownItem>
         {/each}
         </Dropdown>
 
-        <Button><Chevron>Monarch DIP: {monarch_dip}</Chevron></Button>
+        <Button color="dark"><Chevron>Monarch DIP: {monarch_dip}</Chevron></Button>
         <Dropdown >
         {#each game_points as game_point}
             <DropdownItem on:click={()=> monarch_dip=game_point} >{game_point}</DropdownItem>
         {/each}
         </Dropdown>
 
-        <Button><Chevron>Monarch MIL: {monarch_mil}</Chevron></Button>
+        <Button color="dark"><Chevron>Monarch MIL: {monarch_mil}</Chevron></Button>
         <Dropdown >
         {#each game_points as game_point}
             <DropdownItem on:click={()=> monarch_mil=game_point} >{game_point}</DropdownItem>
@@ -292,7 +292,7 @@ loadFile()
         <Label>Monarch birth date</Label>
         <Input bind:value={monarch_birth_date} />
          -->
-        <Button><Chevron>Monarch religion: {monarch_religion}</Chevron></Button>
+        <Button color="dark"><Chevron>Monarch religion: {monarch_religion}</Chevron></Button>
         <Dropdown >
         {#each religions as selected_religion}
             <DropdownItem on:click={()=> monarch_religion=selected_religion} >{selected_religion}</DropdownItem>
@@ -303,7 +303,7 @@ loadFile()
         <Input bind:value={graphical_culture} />
         <Label>Color:</Label> <p>{color}</p>
         <Label>Revolutionnary Color:</Label> <p>{revolutionnary_colors}</p>
-        <Button><Chevron>Selected color: {picked_color}</Chevron></Button>
+        <Button color="dark"><Chevron>Selected color: {picked_color}</Chevron></Button>
         <Dropdown >
         {#each color_elements as color}
             <DropdownItem on:click={()=> picked_color = color } >{color}</DropdownItem>
@@ -344,8 +344,8 @@ loadFile()
             <p>{found_province}</p>
             <Checkbox on:click = {() => addProvince(found_province)}> Add</Checkbox>
         {/each}
-
-        <Button on:click={()=> createCountry()}>Create country</Button>
+        <Hr/>
+        <Button color="yellow" on:click={()=> createCountry()}>Create country</Button>
         {#if display_result}
         <p>Change the tags to {tag} in the "history/provinces/provincefile" of those files:
             {#each provinces_toadd as province}
