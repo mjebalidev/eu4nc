@@ -34,10 +34,10 @@
     transition: filter 300ms;
   }
   .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+    filter: drop-shadow(0 0 2em #551717aa);
   }
   .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
+    filter: drop-shadow(0 0 2em #a22a01aa);
   }
   .read-the-docs {
     color: #888;

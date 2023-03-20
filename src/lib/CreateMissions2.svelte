@@ -7,7 +7,7 @@
     let slot_number = [1,2,3,4,5]
     let mission_icons = ['mission_dominate_home_trade_node', 'mission_egyptian_mamluk_soldier', 'mission_kowtow', 'mission_conquer_5_states', 'mission_iberian_conquistador', 'mission_asian_city', 'mission_early_modern_university', 'mission_bedouins', 'mission_iroquois_warriors', 'mission_junk_boat', 'mission_chinese_general_riding', 'mission_sw_yucca_plants', 'mission_japanese_fort', 'mission_asian_trader', 'mission_indian_soldier_elephant', 'mission_arabian_fort', 'mission_religious', 'mission_steppe_warriors', 'oceania_assemble_an_army', 'mission_hanseatic_city', 'mission_non-western_soldiers', 'mission_hands_praying', 'mission_buddhist_monk_praying', 'mission_crusade_for_varna', 'mission_central_asian_city', 'mission_african_soldier', 'mission_persian_soldiers', 'mission_empire', 'mission_teutonic_knights', 'mission_ne_palisades', 'oceania_royal_marriage', 'mission_assemble_an_army', 'mission_alliances', 'mission_galleys_in_port', 'mission_rice_field', 'mission_market_place_with_asian_traders', 'mission_sw_torquoise_mining', 'mission_se_medicine_wheel', 'mission_cossack_cavalry', 'mission_indian_stateman', 'ne_agriculture', 'mission_trigger', 'polynesian_navy_build', 'mission_mosque', 'native_royal_marriage', 'mission_ne_birch_bark_canoes', 'se_platform_mounds', 'se_along_the_river', 'mission_luther_theses', 'mission_japanese_samurai', 'mission_monarch_in_throne_room', 'mission_italian_condottiere', 'control_unrest', 'polynesian_grand_navy', 'mission_impaled_soldies', 'native_build_army_mission', 'mission_war_chest', 'mission_asian_cannon', 'mission_invade_island', 'mission_sea_battles', 'mission_colonial', 'mission_early_game_buildings', 'mission_sw_against_the_desert', 'mission_settlers_north_america', 'mission_trade_company_region_abroad', 'mission_scholar_officials', 'mission_cannons_firing', 'oceania_dev_capital', 'mission_conquer_50_development', 'mission_noble_council', 'mission_have_manufactories', 'mission_high_income', 'mission_have_two_subjects', 'mission_se_birdmen', 'ne_great_lakes_conquest', 'mission_ottoman_harem', 'oceania_build_army_mission', 'mission_non-western_cavalry_raid', 'native_dev_capital', 'mission_great_wall', 'mission_eastern_european_city', 'mission_manchu_warrior', 'mission_unite_home_region', 'mission_establish_high_seas_navy', 'ne_longhouses', 'gain_mana', 'mission_european_church', 'mission_build_up_to_force_limit', 'mission_landsknecht_soldier'];
 
-    let missions = Array.from({ length: minmaxValue }, (_, i) => `{"key": ${i + 1}, "mission": "my mission name ${i+1}", "icon": "", "position": 0, "completed_by": "", "required_missions": "", "trigger": "", "effect": ""}`);
+    let missions = Array.from({ length: minmaxValue }, (_, i) => `{"key": ${i + 1},"description": "desc", "mission": "my mission name ${i+1}", "icon": "", "position": 0, "completed_by": "", "required_missions": "", "trigger": "", "effect": ""}`);
     for(let i = 0; i < minmaxValue; i++){
         json_container[i] = JSON.parse(missions[i])
     }
@@ -31,13 +31,15 @@
     let countries_l_english_content_temp = ""
     let countries_l_french_content_temp = ""
 
+    let series_missions_name = "customnation_missions"
+
 
     function createMission(){
         // for each element in the array
         missions_data = ""
         // create mission
         let missions_header = `
-        customnation_missions = {
+        ${series_missions_name} = {
             slot = ${missions_slot}                    # Which column the missions will appear in. 1 to 5.
             generic = ${missions_generic}             # Whether missions within this series are considered generic.
             ai = ${missions_ai}                  # Whether the AI will claim missions in this series.
@@ -90,13 +92,13 @@
             //localisation files
             countries_l_english_content_temp = ` 
             ${mission_name_underscore}_title:0 "${json_container[i].mission}"
-            ${mission_name_underscore}_desc:0 "Description mission ${i}"
+            ${mission_name_underscore}_desc:0 "${json_container[i].description}"
             `
             countries_l_english_content = countries_l_english_content + countries_l_english_content_temp
 
             countries_l_french_content_temp = `
             ${mission_name_underscore}_title:0 "${json_container[i].mission}"
-            ${mission_name_underscore}_desc:0 "Description mission ${i}"
+            ${mission_name_underscore}_desc:0 "${json_container[i].description}"
             `
             countries_l_french_content = countries_l_french_content + countries_l_french_content_temp
 
@@ -114,16 +116,12 @@
     }
 
     function renderTableList(){
-        let missions = Array.from({ length: minmaxValue }, (_, i) => `{"key": ${i + 1}, "mission": "my mission name ${i+1}", "icon": "", "position": 0, "completed_by": "", "required_missions": "", "trigger": "", "effect": ""}`);
+        let missions = Array.from({ length: minmaxValue }, (_, i) => `{"key": ${i + 1},"description": "desc", "mission": "my mission name ${i+1}", "icon": "", "position": 0, "completed_by": "", "required_missions": "", "trigger": "", "effect": ""}`);
         json_container = []
         for(let i = 0; i < minmaxValue; i++){
             json_container[i] = JSON.parse(missions[i])
         }
         console.log(missions)
-    }
-
-    function printData(){
-        console.log(json_container[0])
     }
 
     function addRequiredMission(mission, required_mission){
@@ -208,28 +206,28 @@
   
 <main>
     <div class="table-global">
-        <Secondary> Slot </Secondary>
+        <div class="text-input">
+            <Secondary> Series missions name </Secondary>
+            <Input bind:value={series_missions_name}/>
+        </div>
         <Button><Chevron>Slot: {missions_slot}</Chevron></Button>
         <Dropdown >
             {#each slot_number as number}
                 <DropdownItem on:click={()=> missions_slot=number} >{number}</DropdownItem>
             {/each}
             </Dropdown>
-        <Secondary> Generic </Secondary>
         <Button><Chevron>Generic: {missions_generic}</Chevron></Button>
         <Dropdown >
         {#each boolean_container as boolean_choice}
             <DropdownItem on:click={()=> missions_generic=boolean_choice} >{boolean_choice}</DropdownItem>
         {/each}
         </Dropdown>
-        <Secondary> AI </Secondary>
         <Button><Chevron>AI: {missions_ai}</Chevron></Button>
         <Dropdown >
         {#each boolean_container as boolean_choice}
             <DropdownItem on:click={()=> missions_ai=boolean_choice} >{boolean_choice}</DropdownItem>
         {/each}
         </Dropdown>
-        <Secondary> Has country shield </Secondary>
         <Button><Chevron>Has Country Shield: {missions_has_country_shield}</Chevron></Button>
         <Dropdown >
         {#each boolean_container as boolean_choice}
@@ -253,7 +251,8 @@
     <div class="main-frame">
         <Table class="table">
             <TableHead>
-                <TableHeadCell>Mission Name</TableHeadCell>
+                <TableHeadCell>Mission name</TableHeadCell>
+                <TableHeadCell>Mission description</TableHeadCell>
                 <TableHeadCell>Icon</TableHeadCell>
                 <TableHeadCell>Position</TableHeadCell>
                 <TableHeadCell>Completed By</TableHeadCell>
@@ -265,7 +264,8 @@
             {#each json_container as mission}
                 <TableBody>
                     <TableBodyRow>
-                        <TableBodyCell><Input class="w-full" on:change={printData} bind:value={mission.mission}/></TableBodyCell>
+                        <TableBodyCell><Input bind:value={mission.mission}/></TableBodyCell>
+                        <TableBodyCell><Input bind:value={mission.description}/></TableBodyCell>
                         <TableBodyCell>
                             <Button><Chevron>Icon: {mission.icon}</Chevron></Button>
                             <Dropdown >
