@@ -1,5 +1,5 @@
 <script>
-import { Label, Input, Button, Dropdown, DropdownItem, Chevron ,Search, Checkbox} from 'flowbite-svelte'
+import { Label, Input, Button, Dropdown, DropdownItem, Chevron ,Search, Checkbox, Hr} from 'flowbite-svelte'
 import provinces_filelist from '../lib/provinces_list.txt'
 import ColorPicker from 'svelte-awesome-color-picker';
 
@@ -13,6 +13,7 @@ let gouvernements = ["stateless_society","pirate_government","pirate_kingdom","h
 let religions = ["ibadi","shiite","sunni","coptic","reformed","protestant","hussite","anglican","catholic","orthodox","paganism","jewish","zoroastrianism","buddhism","hinduism","islam","jainism","sikhism","shinto","taoism","confucianism","totemism","shamanism","animism"]
 let cultures = ["pommeranian","prussian","baltic_german","lower_saxon","hannoverian","hessian","saxon","franconian","swabian","swiss","bavarian","austrian","dutch","flemish","frisian","swedish","danish","norwegian","finnish","sapmi","karelian","icelandic","norse","english","american","welsh","cornish","scottish","irish","highland_scottish","lombard","tuscan","sardinian","romagnan","ligurian","venetian","dalmatian","neapolitan","piedmontese","umbrian","sicilian","maltese","castillian","mexican","platinean","leonese","aragonese","catalan","galician","andalucian","portugese","brazilian","basque","cosmopolitan_french","gascon","normand","aquitaine","burgundian","breton"]
 let graphical_cultures = []
+let game_points = [1,2,3,4,5,6]
 
 // history - countries - ZAA
 let gouvernement = "monarchy"
@@ -26,9 +27,9 @@ let add_accepted_culture = "sorbian"
 let change_estate_land_share = " estate = estate_burghers share = -5 "
 let monarch_name = "Tester"
 let monarch_dynastie = "of Testenburg"
-let monarch_adm = "6"
-let monarch_dip = "6"
-let monarch_mil = "6"
+let monarch_adm = 6
+let monarch_dip = 6
+let monarch_mil = 6
 let monarch_birth_date = "1423.1.1"
 let monarch_religion = "catholic"
 let monarch = `{ name = "${monarch_name}" dynasty = "${monarch_dynastie}" birth_date = ${monarch_birth_date} adm = ${monarch_adm} dip = ${monarch_dip} mil = ${monarch_mil} religion = ${monarch_religion} }`
@@ -136,6 +137,7 @@ function createCountry(){
     // end files
     // /country_tags/00_counteries.txt
     let countries_00_tag = `${tag} = "countries/${country_name}.txt"`
+    monarch = `{ name = "${monarch_name}" dynasty = "${monarch_dynastie}" birth_date = ${monarch_birth_date} adm = ${monarch_adm} dip = ${monarch_dip} mil = ${monarch_mil} religion = ${monarch_religion} }`
 
     // history/countries/ZAA - ZAAcustom.txt
     let end_history_countries = `
@@ -235,8 +237,12 @@ loadFile()
         <Label>Government reform</Label>
         <Input bind:value={add_government_reform} />
         -->        
-        <Label>Primary culture</Label>
-        <Input bind:value={primary_culture} />
+        <Button><Chevron>Primary culture: {primary_culture}</Chevron></Button>
+        <Dropdown >
+        {#each cultures as selected_culture}
+            <DropdownItem on:click={()=> primary_culture=selected_culture} >{selected_culture}</DropdownItem>
+        {/each}
+        </Dropdown>
         <Button><Chevron>Religion: {religion}</Chevron></Button>
         <Dropdown >
         {#each religions as selected_religion}
@@ -257,22 +263,44 @@ loadFile()
         <Label>Change estate land share</Label>
         <Input bind:value={change_estate_land_share} />
          -->
+
+        <Hr/>
         <Label>Monarch name</Label>
         <Input bind:value={monarch_name} />
         <Label>Monarch dynastie</Label>
         <Input bind:value={monarch_dynastie} />
-        <Label>Monarch adm</Label>
-        <Input bind:value={monarch_adm} />
-        <Label>Monarch dip</Label>
-        <Input bind:value={monarch_dip} />
-        <Label>Monarch mil</Label>
-        <Input bind:value={monarch_mil} />
+
+        <Button><Chevron>Monarch ADM: {monarch_adm}</Chevron></Button>
+        <Dropdown >
+        {#each game_points as game_point}
+            <DropdownItem on:click={()=> monarch_adm=game_point} >{game_point}</DropdownItem>
+        {/each}
+        </Dropdown>
+
+        <Button><Chevron>Monarch DIP: {monarch_dip}</Chevron></Button>
+        <Dropdown >
+        {#each game_points as game_point}
+            <DropdownItem on:click={()=> monarch_dip=game_point} >{game_point}</DropdownItem>
+        {/each}
+        </Dropdown>
+
+        <Button><Chevron>Monarch MIL: {monarch_mil}</Chevron></Button>
+        <Dropdown >
+        {#each game_points as game_point}
+            <DropdownItem on:click={()=> monarch_mil=game_point} >{game_point}</DropdownItem>
+        {/each}
+        </Dropdown>
         <!-- 
         <Label>Monarch birth date</Label>
         <Input bind:value={monarch_birth_date} />
          -->
-        <Label>Monarch religion</Label>
-        <Input bind:value={monarch_religion} />
+        <Button><Chevron>Monarch religion: {monarch_religion}</Chevron></Button>
+        <Dropdown >
+        {#each religions as selected_religion}
+            <DropdownItem on:click={()=> monarch_religion=selected_religion} >{selected_religion}</DropdownItem>
+        {/each}
+        </Dropdown>
+        <Hr/>
         <Label>Graphical culture</Label>
         <Input bind:value={graphical_culture} />
         <Label>Color:</Label> <p>{color}</p>
