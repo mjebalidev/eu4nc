@@ -84,7 +84,7 @@
         }
         console.log(missions_data)
         display_result = true
-        downloadFile("missions", missions_data)
+        downloadFile("missions.txt", missions_data)
     }
 
     function renderTableList(){
@@ -117,7 +117,7 @@
         const link = document.createElement('a');
 
         // Set the download attribute and file URL
-        link.download = name +'.txt';
+        link.download = name;
         link.href = fileUrl;
 
         // Add the anchor element to the DOM

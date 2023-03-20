@@ -180,9 +180,9 @@ function createCountry(){
     // provinces
     // provinces_toadd
 
-    downloadFile("YOURMODNAME_countries",countries_00_tag)
-    downloadFile(tag + " - " + country_name,end_history_countries)
-    downloadFile(country_name,end_common_countries)
+    downloadFile("YOURMODNAME_countries.txt",countries_00_tag)
+    downloadFile(tag + " - " + country_name + ".txt",end_history_countries)
+    downloadFile(country_name + ".txt",end_common_countries)
     downloadFile("countries_l_english.yml", countries_l_english_content)
     downloadFile("countries_l_french.yml", countries_l_french_content)
     display_result = true
@@ -200,7 +200,7 @@ function downloadFile(name,file) {
     const link = document.createElement('a');
 
     // Set the download attribute and file URL
-    link.download = name +'.txt';
+    link.download = name;
     link.href = fileUrl;
 
     // Add the anchor element to the DOM

@@ -22,6 +22,14 @@
     let missions_data = ""
     let display_result = false
     let missions_complete = ""
+    let missions_names_underscore = []
+
+    let countries_l_english_header = "l_english:"
+    let countries_l_french_header = "l_french:"
+    let countries_l_english_content = ""
+    let countries_l_french_content = ""
+    let countries_l_english_content_temp = ""
+    let countries_l_french_content_temp = ""
 
 
     function createMission(){
@@ -74,15 +82,35 @@
                     ${json_container[i].effect}
                 }
             }
-        `
+            `
             missions_data = missions_data + mission_body
+            let mission_name_underscore = json_container[i].mission
+            mission_name_underscore = mission_name_underscore.replace(/ /g, "_")
+            missions_names_underscore.push(mission_name_underscore)
+            //localisation files
+            countries_l_english_content_temp = ` 
+            ${mission_name_underscore}_title:0 "${json_container[i].mission}"
+            ${mission_name_underscore}_desc:0 "Description mission ${i}"
+            `
+            countries_l_english_content = countries_l_english_content + countries_l_english_content_temp
+
+            countries_l_french_content_temp = `
+            ${mission_name_underscore}_title:0 "${json_container[i].mission}"
+            ${mission_name_underscore}_desc:0 "Description mission ${i}"
+            `
+            countries_l_french_content = countries_l_french_content + countries_l_french_content_temp
+
         }
 
         missions_complete = missions_header + missions_data + "}"
+        countries_l_english_content = countries_l_english_header + countries_l_english_content
+        countries_l_french_content = countries_l_french_header + countries_l_french_content
 
         console.log(missions_complete)
         display_result = true
-        downloadFile("missions", missions_complete)
+        downloadFile("missions.txt", missions_complete)
+        downloadFile("missions_l_english.yml", countries_l_english_content)
+        downloadFile("missions_l_french.yml", countries_l_english_content)
     }
 
     function renderTableList(){
@@ -115,7 +143,7 @@
         const link = document.createElement('a');
 
         // Set the download attribute and file URL
-        link.download = name +'.txt';
+        link.download = name ;
         link.href = fileUrl;
 
         // Add the anchor element to the DOM
@@ -271,7 +299,7 @@
         </Table>
         <Button on:click={createMission}>Render & Download</Button>
         {#if display_result}
-            <p>{missions_data}</p>
+            <p>{missions_complete}</p>
         {/if}
 
     </div>
