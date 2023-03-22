@@ -296,6 +296,7 @@
                 </TableBody>
             {/each}
         </Table>
+        <Hr/>
         <Button color="yellow" on:click={createMission}>Render & Download</Button>
         {#if display_result}
             <p>{missions_complete}</p>

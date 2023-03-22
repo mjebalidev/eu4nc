@@ -3,7 +3,7 @@
 </script>
   
 <main>
-    <Button href="https://flagmakerjr.stg7.net/" target="_blank">Go to flagmakerjr.stg7.net</Button>
+    <Button color="dark" href="https://flagmakerjr.stg7.net/" target="_blank">Go to flagmakerjr.stg7.net</Button>
     <Hr />
     <div class="container">
         <iframe id="flagmaker"

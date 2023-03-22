@@ -2,6 +2,7 @@
   import CreateCountry from './lib/CreateCountry.svelte';
   import CreateMissions from './lib/CreateMissions.svelte';
   import CreateMissions2 from './lib/CreateMissions2.svelte';
+  import CreateEvents from './lib/CreateEvents.svelte';
   import FlagMaker from './lib/FlagMaker.svelte';
   import logo from './assets/logo500x500.png';
   import {Img, Secondary, Heading, Tabs, TabItem} from "flowbite-svelte";
@@ -18,6 +19,9 @@
     <TabItem title="Create Missions">
       <!-- <CreateMissions /> -->
       <CreateMissions2/>
+    </TabItem>
+    <TabItem title="Create Events">
+      <CreateEvents />
     </TabItem>
     <TabItem title="Flag Maker">
       <FlagMaker />
