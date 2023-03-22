@@ -210,25 +210,25 @@
             <Secondary> Series missions name </Secondary>
             <Input bind:value={series_missions_name}/>
         </div>
-        <Button color="dark"><Chevron>Slot: {missions_slot}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>Slot: {missions_slot}</Chevron></Button>
         <Dropdown >
             {#each slot_number as number}
                 <DropdownItem on:click={()=> missions_slot=number} >{number}</DropdownItem>
             {/each}
             </Dropdown>
-        <Button color="dark"><Chevron>Generic: {missions_generic}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>Generic: {missions_generic}</Chevron></Button>
         <Dropdown >
         {#each boolean_container as boolean_choice}
             <DropdownItem on:click={()=> missions_generic=boolean_choice} >{boolean_choice}</DropdownItem>
         {/each}
         </Dropdown>
-        <Button color="dark"><Chevron>AI: {missions_ai}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>AI: {missions_ai}</Chevron></Button>
         <Dropdown >
         {#each boolean_container as boolean_choice}
             <DropdownItem on:click={()=> missions_ai=boolean_choice} >{boolean_choice}</DropdownItem>
         {/each}
         </Dropdown>
-        <Button color="dark"><Chevron>Has Country Shield: {missions_has_country_shield}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>Has Country Shield: {missions_has_country_shield}</Chevron></Button>
         <Dropdown >
         {#each boolean_container as boolean_choice}
             <DropdownItem on:click={()=> missions_has_country_shield = boolean_choice} >{boolean_choice}</DropdownItem>
@@ -266,7 +266,7 @@
                         <TableBodyCell><Input bind:value={mission.mission}/></TableBodyCell>
                         <TableBodyCell><Input bind:value={mission.description}/></TableBodyCell>
                         <TableBodyCell>
-                            <Button color="dark"><Chevron>Icon: {mission.icon}</Chevron></Button>
+                            <Button outline color="yellow"><Chevron>Icon: {mission.icon}</Chevron></Button>
                             <Dropdown >
                             {#each mission_icons as icon}
                                 <DropdownItem on:click={()=> mission.icon = icon} >{icon}</DropdownItem>
@@ -276,7 +276,7 @@
                         <TableBodyCell><Input bind:value={mission.position}/></TableBodyCell>
                         <TableBodyCell><Input bind:value={mission.completed_by}/></TableBodyCell>
                         <TableBodyCell>
-                            <Button color="dark"><Chevron>Required missions: {mission.required_missions}</Chevron></Button>
+                            <Button outline color="yellow"><Chevron>Required missions: {mission.required_missions}</Chevron></Button>
                             <Dropdown >
                             {#each json_container as required_mission}
                                 <li><Checkbox on:click={() => {

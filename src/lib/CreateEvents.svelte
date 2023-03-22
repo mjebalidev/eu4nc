@@ -297,7 +297,7 @@ country_event = {
 <main>
     <div>
 		<Label> Events picture names: </Label>
-		<Button color="dark" href="https://eu4.paradoxwikis.com/List_of_event_pictures" target="_blank">link</Button>
+		<Button outline color="yellow" href="https://eu4.paradoxwikis.com/List_of_event_pictures" target="_blank">Go to https://eu4.paradoxwikis.com/List_of_event_pictures</Button>
 		
 		<Hr/>
 		<div>
@@ -321,7 +321,7 @@ country_event = {
 					<TableBody>
 						<TableBodyRow>
 							<TableBodyCell>
-								<Button color="dark"><Chevron>Type: {event.event_type}</Chevron></Button>
+								<Button outline color="yellow"><Chevron>Type: {event.event_type}</Chevron></Button>
 								<Dropdown >
 								{#each event_types as type}
 									<DropdownItem on:click={()=> event.event_type = type} >{type}</DropdownItem>
@@ -333,7 +333,7 @@ country_event = {
 							
 							<TableBodyCell><Input bind:value={event.picture}/></TableBodyCell>
 							<TableBodyCell>
-								<Button color="dark"><Chevron>Fire only once: {event.fire_only_once}</Chevron></Button>
+								<Button outline color="yellow"><Chevron>Fire only once: {event.fire_only_once}</Chevron></Button>
 								<Dropdown >
 								{#each yes_no as choice}
 									<DropdownItem on:click={()=> event.fire_only_once = choice} >{choice}</DropdownItem>
@@ -341,7 +341,7 @@ country_event = {
 								</Dropdown>
 							</TableBodyCell>
 							<TableBodyCell>
-								<Button color="dark"><Chevron>Major: {event.major}</Chevron></Button>
+								<Button outline color="yellow"><Chevron>Major: {event.major}</Chevron></Button>
 								<Dropdown >
 								{#each yes_no as choice}
 									<DropdownItem on:click={()=> event.major = choice} >{choice}</DropdownItem>

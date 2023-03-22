@@ -13,7 +13,7 @@ let gouvernements = ["stateless_society","pirate_government","pirate_kingdom","h
 let religions = ["ibadi","shiite","sunni","coptic","reformed","protestant","hussite","anglican","catholic","orthodox","paganism","jewish","zoroastrianism","buddhism","hinduism","islam","jainism","sikhism","shinto","taoism","confucianism","totemism","shamanism","animism"]
 let cultures = ["pommeranian","prussian","baltic_german","lower_saxon","hannoverian","hessian","saxon","franconian","swabian","swiss","bavarian","austrian","dutch","flemish","frisian","swedish","danish","norwegian","finnish","sapmi","karelian","icelandic","norse","english","american","welsh","cornish","scottish","irish","highland_scottish","lombard","tuscan","sardinian","romagnan","ligurian","venetian","dalmatian","neapolitan","piedmontese","umbrian","sicilian","maltese","castillian","mexican","platinean","leonese","aragonese","catalan","galician","andalucian","portugese","brazilian","basque","cosmopolitan_french","gascon","normand","aquitaine","burgundian","breton"]
 let graphical_cultures = []
-let game_points = [1,2,3,4,5,6]
+let game_points = [0,1,2,3,4,5,6]
 
 // history - countries - ZAA
 let gouvernement = "monarchy"
@@ -225,7 +225,7 @@ loadFile()
         <Input bind:value={tag} />
         <Label>Country Name</Label>
         <Input bind:value={country_name} />
-        <Button color="dark"><Chevron>Government: {gouvernement}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>Government: {gouvernement}</Chevron></Button>
         <Dropdown >
         {#each gouvernements as selected_gouvernement}
             <DropdownItem on:click={()=> gouvernement=selected_gouvernement} >{selected_gouvernement}</DropdownItem>
@@ -235,13 +235,13 @@ loadFile()
         <Label>Government reform</Label>
         <Input bind:value={add_government_reform} />
         -->        
-        <Button color="dark"><Chevron>Primary culture: {primary_culture}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>Primary culture: {primary_culture}</Chevron></Button>
         <Dropdown >
         {#each cultures as selected_culture}
             <DropdownItem on:click={()=> primary_culture=selected_culture} >{selected_culture}</DropdownItem>
         {/each}
         </Dropdown>
-        <Button color="dark"><Chevron>Religion: {religion}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>Religion: {religion}</Chevron></Button>
         <Dropdown >
         {#each religions as selected_religion}
             <DropdownItem on:click={()=> religion=selected_religion} >{selected_religion}</DropdownItem>
@@ -268,21 +268,21 @@ loadFile()
         <Label>Monarch dynastie</Label>
         <Input bind:value={monarch_dynastie} />
 
-        <Button color="dark"><Chevron>Monarch ADM: {monarch_adm}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>Monarch ADM: {monarch_adm}</Chevron></Button>
         <Dropdown >
         {#each game_points as game_point}
             <DropdownItem on:click={()=> monarch_adm=game_point} >{game_point}</DropdownItem>
         {/each}
         </Dropdown>
 
-        <Button color="dark"><Chevron>Monarch DIP: {monarch_dip}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>Monarch DIP: {monarch_dip}</Chevron></Button>
         <Dropdown >
         {#each game_points as game_point}
             <DropdownItem on:click={()=> monarch_dip=game_point} >{game_point}</DropdownItem>
         {/each}
         </Dropdown>
 
-        <Button color="dark"><Chevron>Monarch MIL: {monarch_mil}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>Monarch MIL: {monarch_mil}</Chevron></Button>
         <Dropdown >
         {#each game_points as game_point}
             <DropdownItem on:click={()=> monarch_mil=game_point} >{game_point}</DropdownItem>
@@ -292,7 +292,7 @@ loadFile()
         <Label>Monarch birth date</Label>
         <Input bind:value={monarch_birth_date} />
          -->
-        <Button color="dark"><Chevron>Monarch religion: {monarch_religion}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>Monarch religion: {monarch_religion}</Chevron></Button>
         <Dropdown >
         {#each religions as selected_religion}
             <DropdownItem on:click={()=> monarch_religion=selected_religion} >{selected_religion}</DropdownItem>
@@ -303,7 +303,7 @@ loadFile()
         <Input bind:value={graphical_culture} />
         <Label>Color:</Label> <p>{color}</p>
         <Label>Revolutionnary Color:</Label> <p>{revolutionnary_colors}</p>
-        <Button color="dark"><Chevron>Selected color: {picked_color}</Chevron></Button>
+        <Button outline color="yellow"><Chevron>Selected color: {picked_color}</Chevron></Button>
         <Dropdown >
         {#each color_elements as color}
             <DropdownItem on:click={()=> picked_color = color } >{color}</DropdownItem>
